@@ -1,17 +1,27 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. WGG 8/16/2014 original
+/* GET home page. WGG 8/16/2014 original */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
-*/
 
 /* 
-WGG 8/16/2014 hello world home page
+WGG 8/16/2014 hello world page
   this handles the URL routing
 */
 router.get('/helloworld', function(req, res) {
   res.render('helloworld', { title: 'Hello, World!'})
 });
 module.exports = router;
+
+/* WGG 8/16/2014 get user list */
+router.get('/userlist', function(req, res) {
+  var db = req.db
+  var collection = db.get('usercollection');
+  collection.find({},{}, function(e,docs){
+    res.render('userlist', {
+      "userlist" : docs
+    });
+  });
+});
