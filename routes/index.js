@@ -46,7 +46,8 @@ router.post('/adduser', function(req, res) {
         else {
             // WGG 8/17/2014 If it worked, set the header so the address bar
             // doesn't still say /aduser
-            res.loction("userlist");
+            // I originally had a typo here, loction instead of location
+            res.location("userlist");
             // WGG 8/17/2014 And forward to the success page
             res.redirect("userlist");
         }
