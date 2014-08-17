@@ -21,6 +21,38 @@ router.get('/newuser', function(req, res) {
     res.render('newuser', {title: 'Add New User' });
 });
 
+/* WGG 8/17/2014 POST to Add User Service */
+router.post('/adduser', function(req, res) {
+
+    // WGG 8/17/2014 Set our internal DB variable
+    var db = req.db;
+
+    // WGG 8/17/2014 Get our form values. These rely on the "name attributes
+    var userName = req.body.username;
+    var userEmail = req.body.useremail;
+
+    // WGG 8/17/2014 set our collection
+    var collection = db.get('usercollection');
+
+    // WGG 8/17/2014 submit to the DB
+    collection.insert({
+        "username" : userName,
+        "email" : userEmail,
+    }, function (err, doc) {
+        if (err) {
+            // WGG 8/17/2014 if it railed, return error
+            res.send("There was a problem adding the information to the dtabase.")
+        }
+        else {
+            // WGG 8/17/2014 If it worked, set the header so the address bar
+            // doesn't still say /aduser
+            res.loction("userlist");
+            // WGG 8/17/2014 And forward to the success page
+            res.redirect("userlist");
+        }
+    });
+});
+
 /* WGG 8/16/2014 get user list */
 router.get('/userlist', function(req, res) {
   var db = req.db
@@ -31,3 +63,7 @@ router.get('/userlist', function(req, res) {
     });
   });
 });
+
+
+
+module.exports = router;

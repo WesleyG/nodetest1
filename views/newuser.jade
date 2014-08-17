@@ -4,5 +4,10 @@ block content
   h1= title
   form#formAddUser(name="adduser",method="post",action="/adduser")
       input#inputUserName(type="text", placeholder="username", name="username")
-      input#inputUserEmail(type="text", placeholder="useremail", name="Useremail")
+      br
+      br
+      // WGG 8/17/2014 if name had capital U in useremail it wouldn't work
+      input#inputUserEmail(type="text", placeholder="useremail", name="useremail")
+      br
+      br
       button#btnSubmit(type="submit") submit
