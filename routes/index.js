@@ -15,6 +15,12 @@ router.get('/helloworld', function(req, res) {
 });
 module.exports = router;
 
+/* WGG 8/17/2014 GET new user page */
+
+router.get('/newuser', function(req, res) {
+    res.render('newuser', {title: 'Add New User' });
+});
+
 /* WGG 8/16/2014 get user list */
 router.get('/userlist', function(req, res) {
   var db = req.db
